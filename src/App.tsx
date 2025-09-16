@@ -2,14 +2,22 @@ import FilterSection from "./components/FilterSection";
 import GallerySection from "./components/GallerySection";
 import Header from "./components/Header";
 import { globalState } from "./components/globalState";
+import CartOverlay from "./components/CartOverlay";
 
 function App() {
   const showFilter = globalState((state) => state.showFilter);
   const setShowFilter = globalState((state) => state.setShowFilter);
+  const showCart = globalState((state) => state.showCart);
 
   return (
     <div className="p-5">
       <Header />
+
+      {showCart && (
+        <div className="fixed inset-0 bg-white z-50 p-5 overflow-y-auto">
+          <CartOverlay />
+        </div>
+      )}
 
       {showFilter && (
         <div className="fixed inset-0 bg-white z-50 p-5 overflow-y-auto lg:hidden">

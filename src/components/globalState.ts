@@ -27,4 +27,6 @@ export const globalState = create((set) => ({
           : [...state.favorites, item],
       };
     }),
+  showCart: false,
+  setShowCart: (value: boolean) => set({ showCart: value }),
 }));

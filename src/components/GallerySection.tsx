@@ -16,6 +16,7 @@ function GallerySection() {
   const setShowFilter = globalState((state) => state.setShowFilter);
   const favorites = globalState((state) => state.favorites);
   const toggleFavorite = globalState((state) => state.toggleFavorite);
+  const setShowCart = globalState((state) => state.setShowCart);
 
   const filteredShoes = shoesData.filter(
     (shoe) =>
@@ -63,7 +64,10 @@ function GallerySection() {
           <CiFilter />
         </div>
 
-        <div className="relative block cursor-pointer">
+        <div
+          className="relative block cursor-pointer"
+          onClick={() => setShowCart(true)}
+        >
           <IoCartOutline className="text-4xl" />
           {favorites.length > 0 && (
             <span className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full px-2 text-sm">
