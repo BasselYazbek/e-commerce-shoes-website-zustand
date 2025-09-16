@@ -15,4 +15,6 @@ export const globalState = create((set) => ({
   setMaxPrice: (query: number) => set({ maxPrice: query }),
   sortOption: "",
   setSortOption: (query: string) => set({ sortOption: query }),
+  showFilter: "",
+  setShowFilter: (query: boolean) => set({ showFilter: query }),
 }));

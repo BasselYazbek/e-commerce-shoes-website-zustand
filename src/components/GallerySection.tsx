@@ -13,6 +13,7 @@ function GallerySection() {
   const maxPrice = globalState((state) => state.maxPrice);
   const sortOption = globalState((state) => state.sortOption);
   const setSortOption = globalState((state) => state.setSortOption);
+  const setShowFilter = globalState((state) => state.setShowFilter);
 
   const filteredShoes = shoesData.filter(
     (shoe) =>
@@ -53,7 +54,10 @@ function GallerySection() {
         </div>
 
         {/* Here is the Filter but it is hidden on big screen */}
-        <div className="block lg:hidden cursor-pointer">
+        <div
+          className="block lg:hidden cursor-pointer"
+          onClick={() => setShowFilter(true)}
+        >
           <CiFilter />
         </div>
 
