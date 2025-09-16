@@ -14,6 +14,8 @@ function GallerySection() {
   const sortOption = globalState((state) => state.sortOption);
   const setSortOption = globalState((state) => state.setSortOption);
   const setShowFilter = globalState((state) => state.setShowFilter);
+  const favorites = globalState((state) => state.favorites);
+  const toggleFavorite = globalState((state) => state.toggleFavorite);
 
   const filteredShoes = shoesData.filter(
     (shoe) =>
@@ -63,6 +65,11 @@ function GallerySection() {
 
         <div className="relative block cursor-pointer">
           <IoCartOutline className="text-4xl" />
+          {favorites.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full px-2 text-sm">
+              {favorites.length}
+            </span>
+          )}
         </div>
 
         <div className="flex items-center gap-4 ">
@@ -93,7 +100,14 @@ function GallerySection() {
             />
             <div className="flex items-center justify-between text-3xl">
               <h3 className="font-semibold text-[30px]">{shoes.name}</h3>
-              <CiHeart />
+              <CiHeart
+                className={`cursor-pointer ${
+                  favorites.find((fav) => fav.id === shoes.id)
+                    ? "bg-blue-400"
+                    : ""
+                }`}
+                onClick={() => toggleFavorite(shoes)}
+              />
             </div>
             <div className="flex justify-between text-[25px]">
               <p className="text-gray-600">{shoes.brand}</p>

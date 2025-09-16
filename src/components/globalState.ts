@@ -17,4 +17,14 @@ export const globalState = create((set) => ({
   setSortOption: (query: string) => set({ sortOption: query }),
   showFilter: "",
   setShowFilter: (query: boolean) => set({ showFilter: query }),
+  favorites: [],
+  toggleFavorite: (item) =>
+    set((state) => {
+      const exists = state.favorites.find((fav) => fav.id === item.id);
+      return {
+        favorites: exists
+          ? state.favorites.filter((fav) => fav.id !== item.id)
+          : [...state.favorites, item],
+      };
+    }),
 }));
