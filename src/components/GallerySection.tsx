@@ -11,6 +11,8 @@ function GallerySection() {
   const selectedColor = globalState((state) => state.selectedColor);
   const minPrice = globalState((state) => state.minPrice);
   const maxPrice = globalState((state) => state.maxPrice);
+  const sortOption = globalState((state) => state.sortOption);
+  const setSortOption = globalState((state) => state.setSortOption);
 
   const filteredShoes = shoesData.filter(
     (shoe) =>
@@ -25,6 +27,24 @@ function GallerySection() {
       shoe.price >= minPrice &&
       shoe.price <= maxPrice
   );
+
+  const sortedShoes = [
+    ...filteredShoes.sort((a, b) => {
+      switch (sortOption) {
+        case "price-asc":
+          return a.price - b.price;
+        case "price-desc":
+          return b.price - a.price;
+        case "alpha-asc":
+          return a.name.localeCompare(b.name);
+        case "alpha-desc":
+          return b.name.localeCompare(a.name);
+        default:
+          return 0;
+      }
+    }),
+  ];
+
   return (
     <div className="w-[100%]">
       <div className="flex justify-between text-5xl pb-5">
@@ -43,7 +63,11 @@ function GallerySection() {
 
         <div className="flex items-center gap-4 ">
           <p className="text-xl">Sort by:</p>
-          <select className="border px-2 py-1 rounded text-2xl">
+          <select
+            className="border px-2 py-1 rounded text-2xl"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
             <option value="recent">Recently added</option>
             <option value="price-asc">Price ascending</option>
             <option value="price-desc">Price descending</option>
@@ -53,7 +77,7 @@ function GallerySection() {
         </div>
       </div>
       <div id="grid-items">
-        {filteredShoes.map((shoes) => (
+        {sortedShoes.map((shoes) => (
           <div
             key={shoes.id}
             className="p-4 border rounded-lg shadow-sm text-base"

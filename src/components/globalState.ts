@@ -13,4 +13,6 @@ export const globalState = create((set) => ({
   setMinPrice: (query: number) => set({ minPrice: query }),
   maxPrice: 200,
   setMaxPrice: (query: number) => set({ maxPrice: query }),
+  sortOption: "",
+  setSortOption: (query: string) => set({ sortOption: query }),
 }));
