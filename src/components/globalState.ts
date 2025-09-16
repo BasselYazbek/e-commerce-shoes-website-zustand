@@ -1,0 +1,16 @@
+import { create } from "zustand";
+
+export const globalState = create((set) => ({
+  searchQuery: "",
+  setSearchQuery: (query: string) => set({ searchQuery: query }),
+  selectedBrand: "",
+  setSelectedBrand: (query: string) => set({ selectedBrand: query }),
+  selectedColor: "",
+  setSelectedColor: (query: string) => set({ selectedColor: query }),
+  selectedSize: "",
+  setSelectedSize: (query: number) => set({ selectedSize: query }),
+  minPrice: 0,
+  setMinPrice: (query: number) => set({ minPrice: query }),
+  maxPrice: 200,
+  setMaxPrice: (query: number) => set({ maxPrice: query }),
+}));
